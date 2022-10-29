@@ -1,0 +1,20 @@
+{
+    "name":"nickolasbini/simplified-pagseguro",
+    "description":"Simplified 2022 pag seguro library",
+    "type":"library",
+    "license":"GPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Nickolas Alvaro Bini",
+            "email":"nickolasbini@hotmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "NickolasBini\\SimplifiedPagSeguro\\": "src/"
+        }
+    },
+    "require":{
+        "php": ">=5.0"
+    }
+}
