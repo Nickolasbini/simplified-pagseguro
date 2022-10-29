@@ -243,7 +243,23 @@ class SimplifiedPagSeguro extends Handler
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
-        return json_decode($response, true);
+        $responseArray = json_decode($response, true);
+        if(!$responseArray || !is_array($responseArray))
+            return false;
+        if(!array_key_exists('id', $responseArray)){
+            return [
+                'success'     => false,
+                'content'     => $responseArray,
+                'checkoutId'  => null,
+                'referenceId' => null
+            ];
+        }
+        return [
+            'success'     => true,
+            'content'     => $responseArray,
+            'checkoutId'  => $responseArray['id'],
+            'referenceId' => $response['reference_id']
+        ];
     }
 
     public function checkoutReimbursementByCheckoutId($checkoutId, $valueToRefund)
@@ -271,6 +287,22 @@ class SimplifiedPagSeguro extends Handler
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
-        return json_decode($response, true);
+        $responseArray = json_decode($response, true);
+        if(!$responseArray || !is_array($responseArray))
+            return false;
+        if(!array_key_exists('id', $responseArray)){
+            return [
+                'success'     => false,
+                'content'     => $responseArray,
+                'checkoutId'  => null,
+                'referenceId' => null
+            ];
+        }
+        return [
+            'success'     => true,
+            'content'     => $responseArray,
+            'checkoutId'  => $responseArray['id'],
+            'referenceId' => $response['reference_id']
+        ];
     }
 }
