@@ -5,8 +5,8 @@ namespace NickolasBini\SimplifiedPagSeguro;
 class Handler 
 {
     private $hostURl = [
-        'sandbox'     => 'https://sandbox.api.pagseguro.com',
-        'produtction' => 'https://ws.pagseguro.uol.com.br'
+        'sandbox'    => 'https://sandbox.api.pagseguro.com',
+        'production' => 'https://api.pagseguro.com'
     ];
     private $configuration = [];
 
