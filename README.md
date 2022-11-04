@@ -136,19 +136,19 @@ This is a simplified pag seguro library responsible by handling transactions by 
             "links": [
             {
                 "rel": "SELF",
-                "href": "https:\/\/boleto.sandbox.pagseguro.com.br\/14a4dab9-857c-4c29-a2a0-36e9ddcfd114.pdf",
+                "href": "https://url",
                 "media": "application\/pdf",
                 "type": "GET"
             },
             {
                 "rel": "SELF",
-                "href": "https:\/\/boleto.sandbox.pagseguro.com.br\/14a4dab9-857c-4c29-a2a0-36e9ddcfd114.png",
+                "href": "https://url",
                 "media": "image\/png",
                 "type": "GET"
             },
             {
                 "rel": "SELF",
-                "href": "https:\/\/sandbox.api.pagseguro.com\/charges\/CHAR_E9075E12-E3D3-4C9D-948D-6A85E608E73C",
+                "href": "https://url",
                 "media": "application\/json",
                 "type": "GET"
             }
