@@ -141,6 +141,22 @@ class SimplifiedPagSeguro extends Handler
         $this->requestInfo['notification_urls'] = $notificationURL;
     }
 
+    public function getStatus($checkoutResponse = null)
+    {
+        $checkoutResult = (!$checkoutResponse ? $this->checkout : $checkoutResponse);
+        if(!$checkoutResult)
+            return null;
+        return (!array_key_exists('status', $checkoutResult) ? $checkoutResult['status'] : null);
+    }
+
+    public function getCheckoutId($checkoutResponse = null)
+    {
+        $checkoutResult = (!$checkoutResponse ? $this->checkout : $checkoutResponse);
+        if(!$checkoutResult)
+            return null;
+        return (!array_key_exists('id', $checkoutResult) ? $checkoutResult['id'] : null);
+    }
+
     public function checkout()
     {
         $checkoutObj = new Checkout($this->getConfigurations());
@@ -243,23 +259,7 @@ class SimplifiedPagSeguro extends Handler
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
-        $responseArray = json_decode($response, true);
-        if(!$responseArray || !is_array($responseArray))
-            return false;
-        if(!array_key_exists('id', $responseArray)){
-            return [
-                'success'     => false,
-                'content'     => $responseArray,
-                'checkoutId'  => null,
-                'referenceId' => null
-            ];
-        }
-        return [
-            'success'     => true,
-            'content'     => $responseArray,
-            'checkoutId'  => $responseArray['id'],
-            'referenceId' => $response['reference_id']
-        ];
+        return json_decode($response, true);
     }
 
     public function checkoutReimbursementByCheckoutId($checkoutId, $valueToRefund)
@@ -287,22 +287,6 @@ class SimplifiedPagSeguro extends Handler
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
-        $responseArray = json_decode($response, true);
-        if(!$responseArray || !is_array($responseArray))
-            return false;
-        if(!array_key_exists('id', $responseArray)){
-            return [
-                'success'     => false,
-                'content'     => $responseArray,
-                'checkoutId'  => null,
-                'referenceId' => null
-            ];
-        }
-        return [
-            'success'     => true,
-            'content'     => $responseArray,
-            'checkoutId'  => $responseArray['id'],
-            'referenceId' => $response['reference_id']
-        ];
+        return json_decode($response, true);
     }
 }
