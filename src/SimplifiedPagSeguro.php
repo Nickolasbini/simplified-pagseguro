@@ -196,6 +196,8 @@ class SimplifiedPagSeguro extends Handler
     public function isCheckoutAuthorized($checkoutResponse = null)
     {
         $checkoutResult = (!$checkoutResponse ? $this->checkout : $checkoutResponse);
+        if(!$checkoutResponse)
+            return false;
         $status = $checkoutResult['status'];
         $paymentMethod = $checkoutResult['payment_method']['type'];
         switch($paymentMethod){
