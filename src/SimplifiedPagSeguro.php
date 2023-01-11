@@ -9,6 +9,7 @@ class SimplifiedPagSeguro extends Handler
 {
     private $requestInfo;
     private $checkout;
+    private $enviroment;
 
     private $paymentTypes = [
         1 => 'BOLETO',
@@ -237,7 +238,6 @@ class SimplifiedPagSeguro extends Handler
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
-        exit($response);
         return json_decode($response, true);
     }
 
