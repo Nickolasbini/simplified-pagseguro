@@ -291,4 +291,23 @@ class SimplifiedPagSeguro extends Handler
         curl_close($curl);
         return json_decode($response, true);
     }
+
+    public function extractGeneratedBoletoData($checkoutResponse = null)
+    {
+        if(!is_array($checkoutResponse))
+            return false;
+        $content       = $checkoutResponse['content'];
+        $paymentInfo   = $content['payment_method'];
+        $links         = $content['links'];
+        $pdfBoleto     = (!empty($links[0]) ? $links[0]['href'] : '');
+        $imgBoleto     = (!empty($links[1]) ? $links[1]['href'] : '');
+        $boletoId      = $paymentInfo['boleto']['id'];
+        $boletoBarCode = $paymentInfo['boleto']['barcode'];
+        return [
+            'pdfBoleto' => $pdfBoleto,
+            'imgBoleto' => $imgBoleto,
+            'Id'        => $boletoId,
+            'barcode'   => $boletoBarCode,
+        ];
+    }
 }
