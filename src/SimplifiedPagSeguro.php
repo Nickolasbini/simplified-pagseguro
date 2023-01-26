@@ -306,7 +306,7 @@ class SimplifiedPagSeguro extends Handler
         return [
             'pdfBoleto' => $pdfBoleto,
             'imgBoleto' => $imgBoleto,
-            'Id'        => $boletoId,
+            'id'        => $boletoId,
             'barcode'   => $boletoBarCode,
         ];
     }
