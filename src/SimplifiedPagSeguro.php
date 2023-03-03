@@ -303,11 +303,13 @@ class SimplifiedPagSeguro extends Handler
         $imgBoleto     = (!empty($links[1]) ? $links[1]['href'] : '');
         $boletoId      = $paymentInfo['boleto']['id'];
         $boletoBarCode = $paymentInfo['boleto']['barcode'];
+        $charId        = $content['id'];
         return [
             'pdfBoleto' => $pdfBoleto,
             'imgBoleto' => $imgBoleto,
             'id'        => $boletoId,
             'barcode'   => $boletoBarCode,
+            'charId'    => $charId
         ];
     }
 }
